@@ -1,0 +1,309 @@
+<!doctype>
+
+<html>
+
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
+	<script type='text/javascript' src='js/jquery.min.js'></script>
+	<script type='text/javascript' src='js/script.js'></script>
+	<meta charset="UTF-8">
+	<script src="js/d3.v3.min.js"></script>
+	<script src = "js/linechart.js"></script>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="images/favicon1.ico" type="image/x-icon">
+	<title>Alex Yeh</title>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			font-family: 'Raleway', sans-serif;
+			background-color: #fffcf0;
+			min-width: 1100px;
+		}
+
+		#banner {
+			width: 100%;
+			height: 800px;
+			background-image: url("images/iceburg.jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
+			position: relative;
+		}
+
+		#navbar {
+			width: 100%;
+			height: 90px;
+			display:block;
+			position: fixed;
+			z-index: 100;
+			background-color: rgba(250, 250, 250, 0.0);
+			-webkit-transition: .5s all;
+			-moz-transition: .5s all;
+			-o-transition: .5s all;
+			transition: .5s all;
+		}
+
+		#navbar-container {
+			width: 1100px;
+			height: 90px;
+			margin: 0 auto;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			font-family: 'Open Sans', sans-serif;
+			line-height: 20px;
+			font-weight: 600;
+
+		}
+
+		#name {
+			color: white;
+			text-transform: uppercase;
+			padding-top: 15px;
+			font-size: 18px;
+			float: left;
+			-webkit-transition: .5s all;
+			-moz-transition: .5s all;
+			-o-transition: .5s all;
+			transition: .5s all;
+		}
+
+		#menulist {
+			float: right;
+			list-style: none;
+			display: inline;
+			margin-top: 35px;
+			-webkit-transition: .5s all;
+			-moz-transition: .5s all;
+			-o-transition: .5s all;
+			transition: .5s all;
+			color: rgba(188, 183, 181, 0.9);
+		}
+		#menulist li{
+			display: block;
+			float: left;
+			font-size: 12px;
+		}
+
+		a.menu-item {
+			padding: 20px;
+			-webkit-transition: .2s all;
+			-moz-transition: .2s all;
+			-o-transition: .2s all;
+			transition: .2s all;
+
+		}
+
+		a.menu-item:hover{
+			text-decoration: none;
+			opacity: 0.5;
+		}
+
+		a.menu-item:link{
+			text-decoration: none;
+			color: rgba(188, 183, 181, 0.9);
+		}
+
+		a.menu-item:visited{
+			text-decoration: none;
+			color: rgba(188, 183, 181, 0.9);
+		}
+
+		#intro {
+			width: 450px;
+			height: 420px;
+			margin: auto;
+  			position: absolute;
+  			top: 0; left: 0; bottom: 0; right: 0;
+
+		}
+
+		.section-container {
+			width: 1100px;
+			margin: 0 auto;
+		}
+
+		.title {
+			margin: 0;
+			padding: 0;
+			font-size: 40px;
+			color: black;
+			text-align: center;
+			padding-top: 70px;
+		}
+
+		.info {
+			margin: 0;
+			padding: 0;
+			font-size: 24px;
+			color: black;
+			text-align: left;
+			padding-top: 20px;
+			line-height: 35px;
+			float:left;
+			width: 850px;
+			margin-top: 20px;
+		}
+
+		#about-section {
+			width: 100%;
+			height: 450px;
+			background-color: white;
+		}
+
+		#portfolio-section {
+			width: 100%;
+			height: 2150px;
+		}
+
+		#experience-section {
+			background-color: white;
+		}
+
+		.experience-icons {
+			height: 100px;
+			margin: 35px;
+		}
+
+		#experiences {
+			width: 700px;
+			margin: 0 auto;
+		}
+
+		#contact-section {
+			width: 100%;
+			height: 300px;
+			color: white;
+			background-color: white;
+
+		}
+
+		a:link {
+			text-decoration: none;
+			color: steelblue;
+		}
+
+		a:visited {
+			text-decoration: none;
+			color: steelblue;
+		}
+
+		.portfolio-icons {
+			height: 200px;
+			border-radius: 40px;
+			margin: 35px;
+		}
+
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: black;
+			stroke-width: 2;
+			shape-rendering: crispEdges;
+		}
+
+		#linechart {
+			font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+			font-size: 22px;
+		}
+
+		.contact-icons {
+			margin: 20px;
+			-webkit-transition: .2s all;
+			-moz-transition: .2s all;
+			-o-transition: .2s all;
+			transition: .2s all;
+		}
+
+		.contact-icons:hover {
+			opacity: 0.5;
+		}
+
+		#foot{
+			width: 100%;
+			height: 100px;
+		}
+
+		#foot p{
+			text-align: center;
+			margin:0;
+			font-size:24px;
+			color:gray;
+			padding-top:35px;
+
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id = "navbar">
+		<div id = "navbar-container">
+			<a href = ""><p id = "name">Alex Yeh</p></a>
+			<ul id = "menulist">
+				<li><a class = "menu-item" id = "item1" href = "#about-section">About</a></li>
+				<li><a class = "menu-item" id = "item3" href = "#portfolio-section">Portfolio</a></li>
+				<li><a class = "menu-item" id = "item4" href = "#contact-section">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id = "banner">
+		<div id = "intro">
+			<div style = "width: 200px; margin: 0 auto;" ><img  style = "border-radius: 200px;" src = "images/profile2.png" height = "150"/></div>
+			<p style = "text-align: center; font-size: 40px; font-weight: 600; color: white; letter-spacing: 1px; margin-bottom: 5px;">Hello, I'm Alex.<p>
+			<p style = "text-align: center; font-size: 24px; font-weight: 600; color: white;">student. programmer. web developer. iOS developer. violinist.<p>
+		</div>
+	</div>
+
+	<div id = "about-section">
+		<div class = "section-container">
+			<p class = "title">About Me</p>
+			<p class = "info">I am a junior in high school and I enjoy coding, going to hackathons, creating stuff, playing tennis, and playing violin in my free time. I also enjoy listening to all kinds of classical music, and had been selected and participated in the 2014 National High School Honors Orchestra as well as the 2014 California All State Orchestra. I make all sorts of iOS applications and websites with my friends, and know Objective-C, HTML/CSS, JavaScript, iOS Development, and Web Development.
+			</p>
+			<img src = "images/profile.jpg" style = "border-radius: 200px; height: 200px; float:left; margin-left: 20px; margin-top: 40px;"/>		
+		</div>
+	</div>
+
+	<div id = "portfolio-section">
+		<div class = "section-container">
+			<p class = "title">Portfolio</p>
+			<a href = "http://getfeather.com/"><img class = "portfolio-icons" src = "images/Feather1024.png"/></a>
+			<a href = "https://itunes.apple.com/us/app/hshacks/id827168843?mt=8"><img class = "portfolio-icons" src = "images/Icon-76@2x.png"/></a>
+			<a href = "https://itunes.apple.com/us/app/evdder/id590607951?ls=1&mt=8"><img class = "portfolio-icons" src = "images/itunesart.png"/></a>
+			<a href = "http://vybeapp.com/"><img class = "portfolio-icons" src = "images/vybeIcon512.png"/></a>
+			<a href = "http://vicinitime.com/"><img class = "portfolio-icons" src = "images/vicinitime.png"/></a>
+			<a href = "https://itunes.apple.com/us/app/crowded!/id889885298?ls=1&mt=8"><img class = "portfolio-icons" src = "images/Crowded1024.png"/></a>
+			<a href = "http://reccoapp.com/"><img class = "portfolio-icons" src = "images/recco.png"/></a>
+			<a href = "https://favor.do/"><img class = "portfolio-icons" src = "images/FavorDo.png"/></a>
+			<a href = ""><img class = "portfolio-icons" src = "images/PitchIcon.png"/></a>
+			<a href = ""><img class = "portfolio-icons" src = "images/default.png"/></a>
+			<a href = ""><img class = "portfolio-icons" src = "images/default.png"/></a>
+			<a href = ""><img class = "portfolio-icons" src = "images/default.png"/></a>
+
+			<div id="linechart">
+			</div>
+
+			<a href = "http://shswebdesignclub.com/"><div style = "width: 1100px; margin: 0 auto; margin-top:40px;"><img src = "images/shswd.png" width = "1100"/></div></a>
+		</div>
+	</div>
+
+	<div id = "contact-section">
+		<div class = "section-container">
+			<p class = "title">Contact</p>
+			<div style = "width:320px; margin: 0 auto; margin-top:20px;">
+				<a href = "https://www.facebook.com/alex.yeh.98837"><img class = "contact-icons" src = "images/facebook.jpg"/></a>
+				<a href = "https://www.linkedin.com/pub/alex-yeh/82/731/585"><img class = "contact-icons" src = "images/linkedin.jpg"/></a>
+				<a href = "mailto:alexyuiop@gmail.com"><img class = "contact-icons" src = "images/email.png"/></a>
+			</div>
+		</div>
+	</div>
+
+
+	<footer id = "foot">
+		<p>&copy Alex Yeh</p>
+	</footer>
+
+
+</body>
+
+</html>
